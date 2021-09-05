@@ -1,3 +1,9 @@
+#if !os(macOS)
+import UIKit
+#else
+import AppKit
+#endif
+
 public extension Gradients {
     var name: String {
         switch self {

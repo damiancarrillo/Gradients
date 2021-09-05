@@ -3,11 +3,19 @@
 //  Gradients
 //
 //  Created by Cruz on 2018. 9. 24..
-//  Copyright © 2018년 Cruz. All rights reserved.
+//  Copyright © 2018 Cruz. All rights reserved.
 //
 
+#if !os(macOS)
+import UIKit
+typealias GradientColor = UIColor
+#else
+import AppKit
+typealias GradientColor = NSColor
+#endif
+
 // https://stackoverflow.com/questions/24263007/how-to-use-hex-colour-values
-extension UIColor {
+extension GradientColor {
     convenience init(red: Int, green: Int, blue: Int, alpha: CGFloat) {
         assert(red >= 0 && red <= 255, "Invalid red component")
         assert(green >= 0 && green <= 255, "Invalid green component")
@@ -32,6 +40,6 @@ extension UIColor {
 
 extension Int {
     var cgColor: CGColor {
-        UIColor(self).cgColor
+        GradientColor(self).cgColor
     }
 }

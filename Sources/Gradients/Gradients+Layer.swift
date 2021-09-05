@@ -3,8 +3,14 @@
 //  Gradients
 //
 //  Created by Cruz on 2018. 9. 24..
-//  Copyright © 2018년 Cruz. All rights reserved.
+//  Copyright © 2018 Cruz. All rights reserved.
 //
+
+#if !os(macOS)
+import UIKit
+#else
+import AppKit
+#endif
 
 public extension Gradients {
     var layer: CALayer {
@@ -18,7 +24,11 @@ public extension Gradients {
         case .juicyPeach:
             return Gradients.linear(to: .right, colors: [0xffecd2, 0xfcb69f], locations: [0.0, 1.0])
         case .youngPassion:
-            return Gradients.linear(to: .right, colors: [0xff8177, 0xff867a, 0xff8c7f, 0xf99185, 0xcf556c, 0xb12a5b], locations: [0.0, 0.0, 0.21, 0.52, 0.78, 1.0])
+            return Gradients.linear(
+                to: .right,
+                colors: [0xff8177, 0xff867a, 0xff8c7f, 0xf99185, 0xcf556c, 0xb12a5b],
+                locations: [0.0, 0.0, 0.21, 0.52, 0.78, 1.0]
+            )
         case .ladyLips:
             return Gradients.linear(to: .top, colors: [0xff9a9e, 0xfecfef, 0xfecfef], locations: [0.0, 0.99, 1.0])
         case .sunnyMorning:
@@ -62,7 +72,12 @@ public extension Gradients {
         case .saintPetersburg:
             return Gradients.linear(to: .degree(135), colors: [0xf5f7fa, 0xc3cfe2], locations: [0.0, 1.0])
         case .ariellesSmile:
-            return Gradients.radial(startPoint: CGPoint(x: 0.5, y: 0.5), endPoint: CGPoint(x: 1.5, y: 1.5), colors: [0x16d9e3, 0x30c7ec, 0x46aef7], locations: [0.0, 0.47, 1.0])
+            return Gradients.radial(
+                startPoint: CGPoint(x: 0.5, y: 0.5),
+                endPoint: CGPoint(x: 1.5, y: 1.5),
+                colors: [0x16d9e3, 0x30c7ec, 0x46aef7],
+                locations: [0.0, 0.47, 1.0]
+            )
         case .plumPlate:
             return Gradients.linear(to: .degree(135), colors: [0x667eea, 0x764ba2], locations: [0.0, 1.0])
         case .everlastingSky:
@@ -82,23 +97,39 @@ public extension Gradients {
         case .zeusMiracle:
             return Gradients.linear(to: .top, colors: [0xcd9cf2, 0xf6f3ff], locations: [0.0, 1.0])
         case .oldHat:
-            return Gradients.linear(to: .right, colors: [0xe4afcb, 0xb8cbb8, 0xb8cbb8, 0xe2c58b, 0xc2ce9c, 0x7edbdc], locations: [0.0, 0.0, 0.0, 0.3, 0.64, 1.0])
+            return Gradients.linear(
+                to: .right,
+                colors: [0xe4afcb, 0xb8cbb8, 0xb8cbb8, 0xe2c58b, 0xc2ce9c, 0x7edbdc],
+                locations: [0.0, 0.0, 0.0, 0.3, 0.64, 1.0]
+            )
         case .starWine:
-            return Gradients.linear(to: .right, colors: [0xb8cbb8, 0xb8cbb8, 0xb465da, 0xcf6cc9, 0xee609c, 0xee609c], locations: [0.0, 0.0, 0.0, 0.33, 0.66, 1.0])
+            return Gradients.linear(
+                to: .right,
+                colors: [0xb8cbb8, 0xb8cbb8, 0xb465da, 0xcf6cc9, 0xee609c, 0xee609c],
+                locations: [0.0, 0.0, 0.0, 0.33, 0.66, 1.0]
+            )
         case .deepBlue:
             return Gradients.linear(to: .right, colors: [0x6a11cb, 0x2575fc], locations: [0.0, 1.0])
         case .coupDeGrace:
             let layer = CALayer()
-            layer.backgroundColor = UIColor(0xDCD9D4).cgColor
-            layer.addSublayer(Gradients.radial(startPoint: CGPoint(x: 0.5, y: 0.0),
-                                               endPoint: CGPoint(x: 1.5, y: 2.0),
-                                               colors: [UIColor(0xffffff, a: 0.01).cgColor, UIColor(0x000000, a: 0.01).cgColor],
-                                               locations: [0.0, 1.0],
-                                               filter: CIFilter(name: "CIScreenBlendMode")))
-            layer.addSublayer(Gradients.linear(to: .bottom,
-                                               colors: [UIColor(0xffffff, a: 0.05).cgColor, UIColor(0x000000, a: 0.05).cgColor],
-                                               locations: [0.0, 1.0],
-                                               filter: CIFilter(name: "CISoftLightBlendMode")))
+            layer.backgroundColor = GradientColor(0xDCD9D4).cgColor
+            layer.addSublayer(
+                Gradients.radial(
+                    startPoint: CGPoint(x: 0.5, y: 0.0),
+                    endPoint: CGPoint(x: 1.5, y: 2.0),
+                    colors: [GradientColor(0xffffff, a: 0.01).cgColor, GradientColor(0x000000, a: 0.01).cgColor],
+                    locations: [0.0, 1.0],
+                    filter: CIFilter(name: "CIScreenBlendMode")
+                )
+            )
+            layer.addSublayer(
+                Gradients.linear(
+                    to: .bottom,
+                    colors: [GradientColor(0xffffff, a: 0.05).cgColor, GradientColor(0x000000, a: 0.05).cgColor],
+                    locations: [0.0, 1.0],
+                    filter: CIFilter(name: "CISoftLightBlendMode")
+                )
+            )
             return layer
         case .happyAcid:
             return Gradients.linear(to: .top, colors: [0x37ecba, 0x72afd3], locations: [0.0, 1.0])
@@ -107,19 +138,31 @@ public extension Gradients {
         case .newYork:
             return Gradients.linear(to: .top, colors: [0xfff1eb, 0xace0f9], locations: [0.0, 1.0])
         case .shyRainbow:
-            return Gradients.linear(to: .right, colors: [0xeea2a2, 0xbbc1bf, 0x57c6e1, 0xb49fda, 0x7ac5d8], locations: [0.0, 0.19, 0.42, 0.79, 1.0])
+            return Gradients.linear(
+                to: .right,
+                colors: [0xeea2a2, 0xbbc1bf, 0x57c6e1, 0xb49fda, 0x7ac5d8],
+                locations: [0.0, 0.19, 0.42, 0.79, 1.0]
+            )
         case .loonCrest:
             let layer = CALayer()
-            layer.backgroundColor = UIColor(0x989898).cgColor
-            layer.addSublayer(Gradients.linear(to: .bottom,
-                                               colors: [UIColor(0xffffff, a: 0.15).cgColor, UIColor(0x000000, a: 0.15).cgColor],
-                                               locations: [0.0, 1.0],
-                                               filter: CIFilter(name: "CIMultiplyBlendMode")))
-            layer.addSublayer(Gradients.radial(startPoint: CGPoint(x: 0.5, y: 0.0),
-                                               endPoint: CGPoint(x: 0.5, y: 1.0),
-                                               colors: [UIColor(0xffffff, a: 0.4).cgColor, UIColor(0x000000, a: 0.4).cgColor],
-                                               locations: [0.0, 1.2],
-                                               filter: CIFilter(name: "CIMultiplyBlendMode")))
+            layer.backgroundColor = GradientColor(0x989898).cgColor
+            layer.addSublayer(
+                Gradients.linear(
+                    to: .bottom,
+                    colors: [GradientColor(0xffffff, a: 0.15).cgColor, GradientColor(0x000000, a: 0.15).cgColor],
+                    locations: [0.0, 1.0],
+                    filter: CIFilter(name: "CIMultiplyBlendMode")
+                )
+            )
+            layer.addSublayer(
+                Gradients.radial(
+                    startPoint: CGPoint(x: 0.5, y: 0.0),
+                    endPoint: CGPoint(x: 0.5, y: 1.0),
+                    colors: [GradientColor(0xffffff, a: 0.4).cgColor, GradientColor(0x000000, a: 0.4).cgColor],
+                    locations: [0.0, 1.2],
+                    filter: CIFilter(name: "CIMultiplyBlendMode")
+                )
+            )
             return layer
         case .mixedHopes:
             return Gradients.linear(to: .top, colors: [0xc471f5, 0xfa71cd], locations: [0.0, 1.0])
@@ -152,15 +195,31 @@ public extension Gradients {
         case .politeRumors:
             return Gradients.linear(to: .top, colors: [0xa7a6cb, 0x8989ba, 0x8989ba], locations: [0.0, 0.52, 1.0])
         case .sweetPeriod:
-            return Gradients.linear(to: .top, colors: [0x3f51b1, 0x5a55ae, 0x7b5fac, 0x8f6aae, 0xa86aa4, 0xcc6b8e, 0xf18271, 0xf3a469, 0xf7c978], locations: [0.0, 0.13, 0.25, 0.38, 0.5, 0.62, 0.75, 0.87, 1.0])
+            return Gradients.linear(
+                to: .top,
+                colors: [0x3f51b1, 0x5a55ae, 0x7b5fac, 0x8f6aae, 0xa86aa4, 0xcc6b8e, 0xf18271, 0xf3a469, 0xf7c978],
+                locations: [0.0, 0.13, 0.25, 0.38, 0.5, 0.62, 0.75, 0.87, 1.0]
+            )
         case .wideMatrix:
-            return Gradients.linear(to: .top, colors: [0xfcc5e4, 0xfda34b, 0xff7882, 0xc8699e, 0x7046aa, 0x0c1db8, 0x020f75], locations: [0.0, 0.15, 0.35, 0.52, 0.71, 0.87, 1.0])
+            return Gradients.linear(
+                to: .top,
+                colors: [0xfcc5e4, 0xfda34b, 0xff7882, 0xc8699e, 0x7046aa, 0x0c1db8, 0x020f75],
+                locations: [0.0, 0.15, 0.35, 0.52, 0.71, 0.87, 1.0]
+            )
         case .softCherish:
-            return Gradients.linear(to: .top, colors: [0xdbdcd7, 0xdddcd7, 0xe2c9cc, 0xe7627d, 0xb8235a, 0x801357, 0x3d1635, 0x1c1a27], locations: [0.0, 0.24, 0.30, 0.46, 0.59, 0.71, 0.84, 1.0])
+            return Gradients.linear(
+                to: .top,
+                colors: [0xdbdcd7, 0xdddcd7, 0xe2c9cc, 0xe7627d, 0xb8235a, 0x801357, 0x3d1635, 0x1c1a27],
+                locations: [0.0, 0.24, 0.30, 0.46, 0.59, 0.71, 0.84, 1.0]
+            )
         case .redSalvation:
             return Gradients.linear(to: .top, colors: [0xf43b47, 0x453a94], locations: [0.0, 1.0])
         case .burningSpring:
-            return Gradients.linear(to: .top, colors: [0x4fb576, 0x44c489, 0x28a9ae, 0x28a2b7, 0x4c7788, 0x6c4f63, 0x432c39], locations: [0.0, 0.30, 0.46, 0.59, 0.71, 0.86, 1.0])
+            return Gradients.linear(
+                to: .top,
+                colors: [0x4fb576, 0x44c489, 0x28a9ae, 0x28a2b7, 0x4c7788, 0x6c4f63, 0x432c39],
+                locations: [0.0, 0.30, 0.46, 0.59, 0.71, 0.86, 1.0]
+            )
         case .nightParty:
             return Gradients.linear(to: .top, colors: [0x0250c5, 0xd43f8d], locations: [0.0, 1.0])
         case .skyGlider:
@@ -174,27 +233,45 @@ public extension Gradients {
         case .aboveClouds:
             let layer = CALayer()
             layer.addSublayer(Gradients.linear(to: .left, colors: [0xBDBBBE, 0x9D9EA3], locations: [0.0, 1.0]))
-            layer.addSublayer(Gradients.radial(startPoint: CGPoint(x: 0.88, y: 0.0),
-                                               endPoint: CGPoint(x: 2.38, y: 1.5),
-                                               colors: [UIColor(0xffffff, a: 0.25).cgColor, UIColor(0xfefefe, a: 0.25).cgColor, UIColor(0x000000, a: 0.25).cgColor],
-                                               locations: [0.0, 0.01, 1.0],
-                                               filter: CIFilter(name: "CILightenBlendMode")))
-            layer.addSublayer(Gradients.radial(startPoint: CGPoint(x: 0.5, y: 0.0),
-                                               endPoint: CGPoint(x: 1.5, y: 1.0),
-                                               colors: [UIColor(0xffffff, a: 0.3).cgColor, UIColor(0x000000, a: 0.3).cgColor],
-                                               locations: [0.0, 1.0],
-                                               filter: CIFilter(name: "CISoftLightBlendMode")))
+            layer.addSublayer(
+                Gradients.radial(
+                    startPoint: CGPoint(x: 0.88, y: 0.0),
+                    endPoint: CGPoint(x: 2.38, y: 1.5),
+                    colors: [
+                        GradientColor(0xffffff, a: 0.25).cgColor,
+                        GradientColor(0xfefefe, a: 0.25).cgColor,
+                        GradientColor(0x000000, a: 0.25).cgColor
+                    ],
+                    locations: [0.0, 0.01, 1.0],
+                    filter: CIFilter(name: "CILightenBlendMode")
+                )
+            )
+            layer.addSublayer(
+                Gradients.radial(
+                    startPoint: CGPoint(x: 0.5, y: 0.0),
+                    endPoint: CGPoint(x: 1.5, y: 1.0),
+                    colors: [GradientColor(0xffffff, a: 0.3).cgColor, GradientColor(0x000000, a: 0.3).cgColor],
+                    locations: [0.0, 1.0],
+                    filter: CIFilter(name: "CISoftLightBlendMode")
+                )
+            )
             return layer
         case .spikyNaga:
-            return Gradients.linear(to: .top, colors: [0x505285, 0x585e92, 0x65689f, 0x7474b0, 0x7e7ebb, 0x8389c7, 0x9795d4, 0xa2a1dc, 0xb5aee4], locations: [0.0, 0.12, 0.25, 0.37, 0.50, 0.62, 0.75, 0.87, 1.0])
+            return Gradients.linear(
+                to: .top,
+                colors: [0x505285, 0x585e92, 0x65689f, 0x7474b0, 0x7e7ebb, 0x8389c7, 0x9795d4, 0xa2a1dc, 0xb5aee4],
+                locations: [0.0, 0.12, 0.25, 0.37, 0.50, 0.62, 0.75, 0.87, 1.0]
+            )
         case .loveKiss:
             return Gradients.linear(to: .top, colors: [0xff0844, 0xffb199], locations: [0.0, 1.0])
         case .sharpGlass:
-            let layer = Gradients.linear(to: .degree(180),
-                                         colors: [UIColor(0xffffff, a: 0.5).cgColor, UIColor(0x000000, a: 0.5).cgColor],
-                                         locations: [0.0, 1.0],
-                                         filter: CIFilter(name: "CILightenBlendMode"))
-            layer.backgroundColor = UIColor(0xC9CCD3).cgColor
+            let layer = Gradients.linear(
+                to: .degree(180),
+                colors: [GradientColor(0xffffff, a: 0.5).cgColor, GradientColor(0x000000, a: 0.5).cgColor],
+                locations: [0.0, 1.0],
+                filter: CIFilter(name: "CILightenBlendMode")
+            )
+            layer.backgroundColor = GradientColor(0xC9CCD3).cgColor
             return layer
         case .cleanMirror:
             return Gradients.linear(to: .degree(45), colors: [0x93a5cf, 0xe4efe9], locations: [0.0, 1.0])
@@ -225,7 +302,11 @@ public extension Gradients {
         case .overSun:
             return Gradients.linear(to: .degree(60), colors: [0xabecd6, 0xfbed96], locations: [0.0, 1.0])
         case .premiumWhite:
-            return Gradients.linear(to: .top, colors: [0xd5d4d0, 0xd5d4d0, 0xeeeeec, 0xefeeec, 0xe9e9e7], locations: [0.0, 0.01, 0.31, 0.75, 1.0])
+            return Gradients.linear(
+                to: .top,
+                colors: [0xd5d4d0, 0xd5d4d0, 0xeeeeec, 0xefeeec, 0xe9e9e7],
+                locations: [0.0, 0.01, 0.31, 0.75, 1.0]
+            )
         case .marsParty:
             return Gradients.linear(to: .top, colors: [0x5f72bd, 0x9b23ea], locations: [0.0, 1.0])
         case .eternalConstance:
@@ -259,11 +340,15 @@ public extension Gradients {
         case .raccoonBack:
             let layer = CALayer()
             layer.addSublayer(Gradients.linear(to: .degree(180), colors: [0xBCC5CE, 0x929EAD], locations: [0.0, 1.0]))
-            layer.addSublayer(Gradients.radial(startPoint: CGPoint(x: 0.0, y: 0.0),
-                                               endPoint: CGPoint(x: 1.0, y: 1.0),
-                                               colors: [UIColor(0xffffff, a: 0.3).cgColor, UIColor(0x000000, a: 0.3).cgColor],
-                                               locations: [0.0, 1.0],
-                                               filter: CIFilter(name: "CIScreenBlendMode")))
+            layer.addSublayer(
+                Gradients.radial(
+                    startPoint: CGPoint(x: 0.0, y: 0.0),
+                    endPoint: CGPoint(x: 1.0, y: 1.0),
+                    colors: [GradientColor(0xffffff, a: 0.3).cgColor, GradientColor(0x000000, a: 0.3).cgColor],
+                    locations: [0.0, 1.0],
+                    filter: CIFilter(name: "CIScreenBlendMode")
+                )
+            )
             return layer
         case .partyBliss:
             return Gradients.linear(to: .top, colors: [0x4481eb, 0x04befe], locations: [0.0, 1.0])
@@ -277,16 +362,23 @@ public extension Gradients {
             return Gradients.linear(to: .top, colors: [0xe8198b, 0xc7eafd], locations: [0.0, 1.0])
         case .elegance:
             let layer = CALayer()
-            layer.addSublayer(Gradients.radial(startPoint: CGPoint(x: 0.73, y: 0.73),
-                                               endPoint: CGPoint(x: 1.47, y: 1.47),
-                                               colors: [0xEADFDF, 0xECE2DF],
-                                               locations: [0.59, 1.0]))
-
-            layer.addSublayer(Gradients.radial(startPoint: CGPoint(x: 0.91, y: 0.91),
-                                               endPoint: CGPoint(x: 2.37, y: 2.37),
-                                               colors: [UIColor(0xffffff, a: 0.1).cgColor, UIColor(0x000000, a: 0.1).cgColor],
-                                               locations: [0.47, 1.0],
-                                               filter: CIFilter(name: "CIScreenBlendMode")))
+            layer.addSublayer(
+                Gradients.radial(
+                    startPoint: CGPoint(x: 0.73, y: 0.73),
+                    endPoint: CGPoint(x: 1.47, y: 1.47),
+                    colors: [0xEADFDF, 0xECE2DF],
+                    locations: [0.59, 1.0]
+                )
+            )
+            layer.addSublayer(
+                Gradients.radial(
+                    startPoint: CGPoint(x: 0.91, y: 0.91),
+                    endPoint: CGPoint(x: 2.37, y: 2.37),
+                    colors: [GradientColor(0xffffff, a: 0.1).cgColor, GradientColor(0x000000, a: 0.1).cgColor],
+                    locations: [0.47, 1.0],
+                    filter: CIFilter(name: "CIScreenBlendMode")
+                )
+            )
             return layer
         case .childCare:
             return Gradients.linear(to: .degree(-20), colors: [0xf794a4, 0xfdd6bd], locations: [0.0, 1.0])
@@ -297,24 +389,35 @@ public extension Gradients {
         case .hiddenJaguar:
             return Gradients.linear(to: .top, colors: [0x0fd850, 0xf9f047], locations: [0.0, 1.0])
         case .aboveTheSky:
-            return Gradients.linear(to: .top, colors: [0xd3d3d3, 0xd3d3d3, 0xe0e0e0, 0xefefef, 0xd9d9d9, 0xbcbcbc], locations: [0.0, 0.01, 0.26, 0.48, 0.75, 1.0])
+            return Gradients.linear(
+                to: .top,
+                colors: [0xd3d3d3, 0xd3d3d3, 0xe0e0e0, 0xefefef, 0xd9d9d9, 0xbcbcbc],
+                locations: [0.0, 0.01, 0.26, 0.48, 0.75, 1.0]
+            )
         case .nega:
             return Gradients.linear(to: .degree(45), colors: [0xee9ca7, 0xffdde1], locations: [0.0, 1.0])
         case .denseWater:
             return Gradients.linear(to: .right, colors: [0x3ab5b0, 0x3d99be, 0x56317a], locations: [0.0, 0.31, 1.0])
         case .chemicAqua:
             let layer = CALayer()
-            layer.backgroundColor = UIColor(0xCDDCDC).cgColor
-            layer.addSublayer(Gradients.radial(startPoint: CGPoint(x: 0.5, y: 1.0),
-                                               endPoint: CGPoint(x: 1.3, y: 1.8),
-                                               colors: [UIColor(0xffffff, a: 0.5).cgColor, UIColor(0x000000, a: 0.5).cgColor],
-                                               locations: [0.0, 1.0],
-                                               filter: CIFilter(name: "CIScreenBlendMode")))
-
-            layer.addSublayer(Gradients.linear(to: .bottom,
-                                               colors: [UIColor(0xffffff, a: 0.25).cgColor, UIColor(0x000000, a: 0.25).cgColor],
-                                               locations: [0.0, 1.0],
-                                               filter: CIFilter(name: "CIOverlayBlendMode")))
+            layer.backgroundColor = GradientColor(0xCDDCDC).cgColor
+            layer.addSublayer(
+                Gradients.radial(
+                    startPoint: CGPoint(x: 0.5, y: 1.0),
+                    endPoint: CGPoint(x: 1.3, y: 1.8),
+                    colors: [GradientColor(0xffffff, a: 0.5).cgColor, GradientColor(0x000000, a: 0.5).cgColor],
+                    locations: [0.0, 1.0],
+                    filter: CIFilter(name: "CIScreenBlendMode")
+                )
+            )
+            layer.addSublayer(
+                Gradients.linear(
+                    to: .bottom,
+                    colors: [GradientColor(0xffffff, a: 0.25).cgColor, GradientColor(0x000000, a: 0.25).cgColor],
+                    locations: [0.0, 1.0],
+                    filter: CIFilter(name: "CIOverlayBlendMode")
+                )
+            )
             return layer
         case .seashore:
             return Gradients.linear(to: .top, colors: [0x209cff, 0x68e0cf], locations: [0.0, 1.0])
@@ -339,16 +442,32 @@ public extension Gradients {
         case .fullMetal:
             let layer = CALayer()
             layer.addSublayer(Gradients.linear(to: .bottom, colors: [0xD5DEE7, 0xE8EBF2, 0xE2E7ED], locations: [0.0, 0.5, 1.0]))
-            layer.addSublayer(Gradients.linear(to: .bottom,
-                                               colors: [UIColor(0x000000, a: 0.02).cgColor, UIColor(0xffffff, a: 0.02).cgColor, UIColor(0x000000, a: 0.02).cgColor],
-                                               locations: [0.5, 0.61, 0.73]))
-            layer.addSublayer(Gradients.linear(to: .degree(33),
-                                               colors: [UIColor(0xffffff, a: 0.2).cgColor, UIColor(0x000000, a: 0.2).cgColor],
-                                               locations: [0.0, 1.0],
-                                               filter: CIFilter(name: "CIColorBurnBlendMode")))
+            layer.addSublayer(
+                Gradients.linear(
+                    to: .bottom,
+                    colors: [
+                        GradientColor(0x000000, a: 0.02).cgColor,
+                        GradientColor(0xffffff, a: 0.02).cgColor,
+                        GradientColor(0x000000, a: 0.02).cgColor
+                    ],
+                    locations: [0.5, 0.61, 0.73]
+                )
+            )
+            layer.addSublayer(
+                Gradients.linear(
+                    to: .degree(33),
+                    colors: [GradientColor(0xffffff, a: 0.2).cgColor, GradientColor(0x000000, a: 0.2).cgColor],
+                    locations: [0.0, 1.0],
+                    filter: CIFilter(name: "CIColorBurnBlendMode")
+                )
+            )
             return layer
         case .africanField:
-            return Gradients.linear(to: .top, colors: [0x65bd60, 0x5ac1a8, 0x3ec6ed, 0xb7ddb7, 0xfef381], locations: [0.0, 0.25, 0.50, 0.75, 1.0])
+            return Gradients.linear(
+                to: .top,
+                colors: [0x65bd60, 0x5ac1a8, 0x3ec6ed, 0xb7ddb7, 0xfef381],
+                locations: [0.0, 0.25, 0.50, 0.75, 1.0]
+            )
         case .solidStone:
             return Gradients.linear(to: .right, colors: [0x243949, 0x517fa4], locations: [0.0, 1.0])
         case .orangeJuice:
@@ -358,10 +477,14 @@ public extension Gradients {
         case .slickCarbon:
             let layer = CALayer()
             layer.addSublayer(Gradients.linear(to: .bottom, colors: [0x323232, 0x3F3F3F, 0x1C1C1C], locations: [0.0, 0.4, 1.5]))
-            layer.addSublayer(Gradients.linear(to: .top,
-                                               colors: [UIColor(0xffffff, a: 0.4).cgColor, UIColor(0x000000, a: 0.25).cgColor],
-                                               locations: [0.0, 1.25],
-                                               filter: CIFilter(name: "CIMultiplyBlendMode")))
+            layer.addSublayer(
+                Gradients.linear(
+                    to: .top,
+                    colors: [GradientColor(0xffffff, a: 0.4).cgColor, GradientColor(0x000000, a: 0.25).cgColor],
+                    locations: [0.0, 1.25],
+                    filter: CIFilter(name: "CIMultiplyBlendMode")
+                )
+            )
             return layer
         case .northMiracle:
             return Gradients.linear(to: .right, colors: [0x00dbde, 0xfc00ff], locations: [0.0, 1.0])
@@ -375,15 +498,23 @@ public extension Gradients {
             return Gradients.linear(to: .degree(-20), colors: [0x616161, 0x9bc5c3], locations: [0.0, 1.0])
         case .earlGray:
             let layer = CALayer()
-            layer.backgroundColor = UIColor(0xe4e4e1).cgColor
-            layer.addSublayer(Gradients.radial(startPoint: CGPoint(x: 0.5, y: 0.0),
-                                               endPoint: CGPoint(x: 1.5, y: 1.0),
-                                               colors: [UIColor(0xffffff, a: 0.03).cgColor, UIColor(0x000000, a: 0.03).cgColor],
-                                               locations: [0.0, 1.0]))
-            layer.addSublayer(Gradients.linear(to: .top,
-                                               colors: [UIColor(0xffffff, a: 0.1).cgColor, UIColor(0x8F989D, a: 0.6).cgColor],
-                                               locations: [0.0, 1.0],
-                                               filter: CIFilter(name: "CIMultiplyBlendMode")))
+            layer.backgroundColor = GradientColor(0xe4e4e1).cgColor
+            layer.addSublayer(
+                Gradients.radial(
+                    startPoint: CGPoint(x: 0.5, y: 0.0),
+                    endPoint: CGPoint(x: 1.5, y: 1.0),
+                    colors: [GradientColor(0xffffff, a: 0.03).cgColor, GradientColor(0x000000, a: 0.03).cgColor],
+                    locations: [0.0, 1.0]
+                )
+            )
+            layer.addSublayer(
+                Gradients.linear(
+                    to: .top,
+                    colors: [GradientColor(0xffffff, a: 0.1).cgColor, GradientColor(0x8F989D, a: 0.6).cgColor],
+                    locations: [0.0, 1.0],
+                    filter: CIFilter(name: "CIMultiplyBlendMode")
+                )
+            )
             return layer
         case .spaceShift:
             return Gradients.linear(to: .degree(60), colors: [0x3d3393, 0x2b76b9, 0x2cacd1, 0x35eb93], locations: [0.0, 0.37, 0.65, 1.0])
@@ -472,7 +603,12 @@ extension Gradients {
         return linear(to: direction, colors: colors.map { color in color.cgColor }, locations: locations)
     }
 
-    public static func linear(to direction: Direction, colors: [CGColor], locations: [NSNumber], filter: CIFilter? = nil) -> CAGradientLayer {
+    public static func linear(
+        to direction: Direction,
+        colors: [CGColor],
+        locations: [NSNumber],
+        filter: CIFilter? = nil
+    ) -> CAGradientLayer {
         let layer = CAGradientLayer()
         layer.startPoint = direction.startPoint
         layer.endPoint = direction.endPoint
@@ -484,11 +620,23 @@ extension Gradients {
         return layer
     }
 
-    public static func radial(startPoint: CGPoint, endPoint: CGPoint, colors: [Int], locations: [NSNumber], filter: CIFilter? = nil) -> CAGradientLayer {
+    public static func radial(
+        startPoint: CGPoint,
+        endPoint: CGPoint,
+        colors: [Int],
+        locations: [NSNumber],
+        filter: CIFilter? = nil
+    ) -> CAGradientLayer {
         return radial(startPoint: startPoint, endPoint: endPoint, colors: colors.map { color in color.cgColor}, locations: locations)
     }
 
-    public static func radial(startPoint: CGPoint, endPoint: CGPoint, colors: [CGColor], locations: [NSNumber], filter: CIFilter? = nil) -> CAGradientLayer {
+    public static func radial(
+        startPoint: CGPoint,
+        endPoint: CGPoint,
+        colors: [CGColor],
+        locations: [NSNumber],
+        filter: CIFilter? = nil
+    ) -> CAGradientLayer {
         let layer = CAGradientLayer()
         layer.type = .radial
         layer.startPoint = startPoint

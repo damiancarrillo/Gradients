@@ -6,7 +6,11 @@
 //  Copyright © 2018 Cruz. All rights reserved.
 //
 
+#if !os(macOS)
 import UIKit
+#else
+import AppKit
+#endif
 
 public enum Direction {
     case top
