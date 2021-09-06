@@ -4,7 +4,7 @@ import UIKit
 import AppKit
 #endif
 
-public extension Gradients {
+public extension Gradient {
     var name: String {
         switch self {
         case .warmFlame:

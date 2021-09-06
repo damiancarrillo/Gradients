@@ -1,12 +1,12 @@
 //
-//  Gradients.swift
+//  Gradient.swift
 //  Gradients
 //
 //  Created by Cruz on 30/09/2018.
 //  Copyright © 2018 Cruz. All rights reserved.
 //
 
-public enum Gradients: Int, CaseIterable {
+public enum Gradient: Int, CaseIterable {
     case warmFlame = 1
     case nightFade
     case springWarmth

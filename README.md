@@ -4,24 +4,17 @@
 
 ![logo](README/gradients.png)
 
-[![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)
-![Swift](https://img.shields.io/badge/Swift-5.0-orange.svg)
-[![Version](https://img.shields.io/cocoapods/v/Gradients.svg?style=flat)](http://cocoapods.org/pods/Gradients)
-[![License](https://img.shields.io/cocoapods/l/Gradients.svg?style=flat)](http://cocoapods.org/pods/Gradients)
-[![Platform](https://img.shields.io/cocoapods/p/Gradients.svg?style=flat)](http://cocoapods.org/pods/Gradients)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-
 180 splendid Gradients inspired by [itmeo/webgradients](https://github.com/itmeo/webgradients)
 [View all the gradients here »](https://webgradients.com)
 
 ## 🏄🏼 Easy To Use
 ```swift
-view.layer.addSubLayer(Gradients.deepBlue.layer)
+view.layer.addSubLayer(Gradient.deepBlue.layer)
 ```
 
 #### 180+ Gradients
 ```swift
-public enum Gradients: Int, CaseIterable {
+public enum Gradient: Int, CaseIterable {
     case warmFlame = 1
     case nightFade
     case springWarmth
@@ -48,7 +41,12 @@ public enum Direction {
 ![customize](README/custom.png)
 ```swift
 // degree for radian direction supported
-let customLayer = Gradients.linear(to: .degree(-225), colors: [0x231557, 0x44107A, 0xFF1361, 0xFFF800], locations: [0.0, 0.29, 0.67, 1.0]) // Fabled Sunset
+let customLayer = Gradient.linear(
+    to: .degree(-225),
+    colors: [0x231557, 0x44107A, 0xFF1361, 0xFFF800],
+    locations: [0.0, 0.29, 0.67, 1.0]
+) // Fabled Sunset
+
 view.layer.addSubLayer(customLayer)
 ```
 
@@ -60,17 +58,7 @@ view.layer.addSubLayer(customLayer)
 Gradients is written in  Xcode 10, Swift 4+, iOS 9.0+ Required
 
 ## 📲 Installation
-Gradients is available through [Cocoapods](http://cocoapods.org) or [Carthage](https://github.com/Carthage/Carthage)
-
-### Cocoapods
-```ruby
-pod "Gradients"
-```
-
-### Carthage
-```
-github "cruisediary/Gradients" ~> 0.3.0
-```
+Gradients is available via Swift Package Manager.
 
 ## ❤️ Contribution
 Pull requests are always welcomed 🏄🏼
